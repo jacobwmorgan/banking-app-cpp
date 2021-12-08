@@ -17,6 +17,7 @@ Good luck!
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <string.h>
 
 int main()
 {
