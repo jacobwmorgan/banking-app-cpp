@@ -1,4 +1,8 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
+#include <sstream>
+#include <vector>
+#include <string.h>
 
 int main(int argc, char *argv[])
 {
@@ -25,4 +29,10 @@ int main(int argc, char *argv[])
 		LogOut []
 
 	*/
+	std::vector <std::string> parameters;
+	std::string userCommand;
+
+	std::cout << "~~~ Welcome to LincBank! ~~~ \n";
+	
+
 }

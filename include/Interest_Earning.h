@@ -10,7 +10,7 @@
 class Interest_Earning
 {
   public:
-    int computeInterest(int amount);
+    int computeInterest(int amount , float interest , int time);
 };
 
 
