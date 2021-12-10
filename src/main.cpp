@@ -5,8 +5,8 @@ int main(int argc, char *argv[])
 	/*
 		MAIN MENU
 		* ALL ACCOUNTS WILL SHOW HERE EG.*
-		Jacob Morgan 221512 [X]
-		Theo Morgan 125123 []
+		Jacob Morgan 221512 []
+		Theo Morgan 125123 [X]
 		Exit []
 
 
@@ -15,8 +15,8 @@ int main(int argc, char *argv[])
 		*(Current Account Info )*
 		Jacob Morgan 221512
 		---------------------------------------------
-		View Account info [X]
-		Withdraw Funds []
+		View Account info []
+		Withdraw Funds [X]
 		Deposit Funds []
 		Transfer Funds []
 		Project []
