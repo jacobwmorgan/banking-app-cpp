@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"uri": "vscode-remote://wsl+ubuntu/mnt/c/Users/Jacob/Desktop/Adv-Programming-Assessment/images"
+		},
+		{
+			"uri": "vscode-remote://wsl+ubuntu/mnt/c/Users/Jacob/Desktop/Adv-Programming-Assessment/include"
+		},
+		{
+			"uri": "vscode-remote://wsl+ubuntu/mnt/c/Users/Jacob/Desktop/Adv-Programming-Assessment/src"
+		}
+	]
+}

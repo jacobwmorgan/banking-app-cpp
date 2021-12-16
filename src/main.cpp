@@ -3,6 +3,8 @@
 #include <sstream>
 #include <vector>
 #include <string.h>
+#include "Current.h"
+//#include "Saving.h"
 
 int main(int argc, char *argv[])
 {
@@ -29,10 +31,12 @@ int main(int argc, char *argv[])
 		LogOut []
 
 	*/
+	//std::vector <Account> accounts;
 	std::vector <std::string> parameters;
 	std::string userCommand;
 
 	std::cout << "~~~ Welcome to LincBank! ~~~ \n";
+	Account account;
 	
 
 }
