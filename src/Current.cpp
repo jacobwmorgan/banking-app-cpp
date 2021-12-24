@@ -4,14 +4,35 @@
 #include <string.h>
 #include "Current.h"
 
-
-Curent::virtual void deposit(int amount)
+Current::Current()
 {
-  std::cout << "WIP\n";
-};
+  std::cout<<"Current account created\n";
+  overdraft = 500;
+  setType('c');
+}
 
-Current::Current() : Account()
+void Current::deposit(float amount)
 {
-  overdraft = 0;
-};
+  if(overdraft == 500)
+  {
+    balance += amount;
+  }
+  else
+  {
+    overdraft += amount;
+    if(overdraft > 500)
+    {
+      float tempOverdraft = overdraft - 500;
+      overdraft = 500;
+      balance += tempOverdraft;
+    }
+  }
+  std::cout<<"lmao\n";
+}
+
+float Current::withdraw(float amount)
+{
+  std::cout<<"lmao\n";
+  return 0;
+}
 

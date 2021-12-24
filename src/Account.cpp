@@ -2,58 +2,96 @@
 #include <sstream>
 #include <vector>
 #include <string.h>
+#include <iomanip> 
 #include "Account.h"
 
-Account::Account()
+
+
+
+void Account::deposit(double amount)
 {
-  std::string str;
-  std::getline(std::cin,str);
-  setName(str);
-  //genAccountNumber();
-  std::cout << "Account has been created\n"<<getName()<<"\n"<<getNumber()<<"\n";
+  setBalance(getBalance() + amount);
+  std::cout << toString(amount) <<" added to your balance\nYour new balance is : "<< toString(getBalance())<<"\n";
 }
 
-Account::~Account()
+double Account::withdraw(double amount)
 {
-  std::cout << "Account has been deleted\n";
+  balance -= amount;
+  return amount;
 }
 
-Account::toString(string input)
+std::string Account::toString(double input)
 {
   return std::to_string(input);
 }
 
-Account::deposit(int amount)
+void Account::display()
 {
-  std::cout << "WIP\n";
+  std::cout << std::fixed << std::setprecision(2);
+  std::cout << "-----------\nAccount Details\nName: "<< getName() <<"\nAccount Number: "<< getNumber() <<"\nAccount Type: "<<getType()<<"\n=========\nBalance: "<< getBalance() << "\n";
 }
 
-Account::withdraw(int amount)
-{
-  std::cout << "WIP\n";
-  return 0;
-}
-
-Account::setName(string input)
+void Account::setName(std::string input)
 {
   name = input;
 }
 
-Account::genAccountNumber(std::vector<Account> accounts)
-{
-  std::cout << "WIP\n";
-  accountNumber = "0";  
-}
-
-Account::getName()
+std::string Account::getName()
 {
   return name;
 }
 
-Account::getNumber()
+void Account::setNumber()
 {
-  return accountNumber;
+  number = 2;
+}
+
+int Account::getNumber()
+{
+  return number;
+}
+
+void Account::setType(char input)
+{
+  type = input;
+}
+
+std::string Account::getType()
+{
+  if(type == 'c')
+  {
+    return "Current";
+  }
+  else if (type == 's')
+  {
+    return "Savings";
+  }
+  else
+  {
+    return NULL;
+  }
+}
+
+void Account::setBalance(double input)
+{
+  balance = input;
+}
+
+double Account::getBalance()
+{
+  return balance;
 }
 
 
 
+
+Account::Account()
+{
+  balance = 0;
+  std::string tempName;
+  std::cout<<"Name: ";
+  std::cin >> tempName;
+  setName(tempName);
+  setNumber();
+  std::cout<<"Account created\n";
+}
