@@ -14,7 +14,7 @@ class Current : public Account
     int overdraft;
     void deposit(float amount);
     float withdraw(float amount);
-    bool checkOverDraft();
+
     Current();
 };
 

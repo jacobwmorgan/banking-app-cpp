@@ -4,8 +4,11 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
-#include <iomanip> 
 #include <string.h>
+#include <iomanip> 
+#include <chrono>
+#include <ctime> 
+#include "Transaction.h"
 
 /*
 Header file for Account class
@@ -34,11 +37,14 @@ class Account
     void setBalance(double input);
     double getBalance();
 
+    void addHistory(Transaction input);
+    void displayHistory();
+
     Account();
 
   protected:
     double balance;
-    std::vector<std::string> history;
+    std::vector<Transaction> history;
   
   private:
     std::string name;

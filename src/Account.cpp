@@ -1,15 +1,18 @@
 #include <iostream>
+#include <chrono>
 #include <sstream>
 #include <vector>
 #include <string.h>
 #include <iomanip> 
 #include "Account.h"
-
+#include "Transaction.h"
 
 
 
 void Account::deposit(double amount)
 {
+  Transaction transaction("Deposit",amount);
+  addHistory(transaction);
   setBalance(getBalance() + amount);
   std::cout << toString(amount) <<" added to your balance\nYour new balance is : "<< toString(getBalance())<<"\n";
 }
@@ -82,8 +85,17 @@ double Account::getBalance()
   return balance;
 }
 
+void Account::addHistory(Transaction input)
+{
+  history.push_back(input);
+}
 
-
+void Account::displayHistory()
+{
+  std::cout << "Date & Time | Description | Amount\n";
+  history[0].displayTransaction();
+  
+}
 
 Account::Account()
 {

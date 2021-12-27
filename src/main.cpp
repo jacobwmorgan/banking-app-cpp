@@ -40,8 +40,9 @@ int main(int argc, char *argv[])
 	std::cout << "~~~ Welcome to LincBank! ~~~ \n";
 	//Account account;
 	Current current;
-	current.deposit(145114.1212);
+	current.deposit(140);
 	current.display();
+	current.displayHistory();
 	return 0;
 
 }
