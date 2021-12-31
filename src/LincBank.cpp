@@ -22,7 +22,7 @@ Good luck!
 int main()
 {
 	std::vector <std::string> parameters;
-    std::string userCommand;
+  std::string userCommand;
 	// you may also want to store a collection of opened accounts here
 
 	std::cout << "~~~ Welcome to LincBank! ~~~" << std::endl;

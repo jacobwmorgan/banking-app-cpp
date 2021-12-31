@@ -33,7 +33,7 @@ void Transaction::setTimeStamp()
   //std::time_t now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
   time_t now = time(0);
   timestamp = now;
-  std::cout<<"lmao\n";
+  std::cout<<"Time Stamp set\n";
 }
 
 double Transaction::getValue()
@@ -50,6 +50,7 @@ void Transaction::displayTransaction()
 {
   std::cout << "omg kill me | " << getDesc() << " | " << toString(getValue()) <<"\n";
   //std::cout << getTimeStamp() << "\n";
+  std::cout << "ffs\n";
 }
 
 Transaction::Transaction(std::string inputDesc , double inputValue)

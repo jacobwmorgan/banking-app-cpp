@@ -92,8 +92,18 @@ void Account::addHistory(Transaction input)
 
 void Account::displayHistory()
 {
-  std::cout << "Date & Time | Description | Amount\n";
-  history[0].displayTransaction();
+  if(history.size() == 0)
+  {
+    std::cout << "You have no history of transactions \n";
+  }else
+  {
+    std::cout << "Date & Time | Description | Amount\n";
+    for (int i = 0; i < history.size(); i++)
+    {
+      /* code */
+      history[i].displayTransaction();
+    }
+  }
   
 }
 
@@ -105,5 +115,5 @@ Account::Account()
   std::cin >> tempName;
   setName(tempName);
   setNumber();
-  std::cout<<"Account created\n";
+  //std::cout<<"Account created\n";
 }

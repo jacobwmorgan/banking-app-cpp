@@ -15,7 +15,7 @@ void Current::deposit(float amount)
 {
   if(overdraft == 500)
   {
-    balance += amount;
+    setBalance(getBalance() + amount);
   }
   else
   {
@@ -24,15 +24,20 @@ void Current::deposit(float amount)
     {
       float tempOverdraft = overdraft - 500;
       overdraft = 500;
-      balance += tempOverdraft;
+      std::cout << overdraft;
+      setBalance(getBalance() + tempOverdraft);
     }
   }
-  std::cout<<"lmao\n";
+  Transaction transaction("Current Account Deposit",amount);
+  addHistory(transaction);
+  std::cout << std::fixed << std::setprecision(2);
+  std::cout<< amount << " deposited\n";
+
 }
 
 float Current::withdraw(float amount)
 {
-  std::cout<<"lmao\n";
+  std::cout<<"WIP\n";
   return 0;
 }
 

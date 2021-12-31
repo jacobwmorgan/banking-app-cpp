@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
 	//Account account;
 	Current current;
 	current.deposit(140);
-	current.display();
+	//current.display();
 	current.displayHistory();
 	return 0;
 
