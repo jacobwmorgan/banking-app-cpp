@@ -15,8 +15,8 @@ class Account
 {
   public :
     std::string toString(float input);
-    virtual void deposit(float amount);
-    virtual void withdraw (float amount);
+    virtual void deposit(float amount) =0;
+    virtual void withdraw (float amount)=0;
     
     void display();
     

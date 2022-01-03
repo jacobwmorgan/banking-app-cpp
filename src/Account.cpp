@@ -9,18 +9,18 @@
 
 
 
-void Account::deposit(float amount)\
-{
-  Transaction transaction("Deposit",amount);
-  addHistory(transaction);
-  setBalance(getBalance() + amount);
-  std::cout << toString(amount) <<" added to your balance\nYour new balance is : "<< getBalance()<<"\n";
-}
+// void Account::deposit(float amount)\
+// {
+//   Transaction transaction("Deposit",amount);
+//   addHistory(transaction);
+//   setBalance(getBalance() + amount);
+//   std::cout << toString(amount) <<" added to your balance\nYour new balance is : "<< getBalance()<<"\n";
+// }
 
-void Account::withdraw(float amount)
-{
-  balance -= amount;
-}
+// void Account::withdraw(float amount)
+// {
+//   balance -= amount;
+// }
 
 std::string Account::toString(float input)
 {
@@ -43,6 +43,7 @@ std::string Account::getName()
   return name;
 }
 
+//WIP
 void Account::setNumber()
 {
   number = 2;

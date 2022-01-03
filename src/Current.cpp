@@ -24,7 +24,6 @@ void Current::deposit(float amount)
     {
       float tempOverdraft = overdraft - 500;
       overdraft = 500;
-      std::cout << overdraft;
       setBalance(getBalance() + tempOverdraft);
     }
   }
@@ -35,12 +34,23 @@ void Current::deposit(float amount)
 
 }
 
+
+//TO DO , LEGIT DO THE OVERDRAFT THING YOU SEE EVERY SINGLE DAY 
 void Current::withdraw(float amount)
 {
   float tempAmount = getBalance() - amount;
   if (tempAmount < 0)
   {
-    std::cout << tempAmount;
+    float tempOverdraft = overdraft - amount;
+    if (tempOverdraft > 0)
+    {
+      overdraft -= amount;
+    }else{
+      std::cout << "Not enough money in overdraft\n";
+    }
+  }else{
+    setBalance(getBalance() - amount);
   }
+  std::cout << "Balance : "<< getBalance() << "\nOverdraft : "<< overdraft << "\n"; 
 }
 

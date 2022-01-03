@@ -13,6 +13,8 @@ class Current : public Account
   public:
     float overdraft;
     Current();
+    void deposit(float amount);
+    void withdraw(float amount);
 };
 
 #endif

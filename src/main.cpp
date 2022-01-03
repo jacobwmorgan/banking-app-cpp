@@ -6,6 +6,7 @@
 #include <iomanip> 
 #include "Account.h"
 #include "Current.h"
+#include "Saving.h"
 //#include "Saving.h"
 //g++ -I../include main.cpp Account.cpp Current.cpp Transaction.cpp InterestEarning.cpp
 int main(int argc, char *argv[])
@@ -34,22 +35,25 @@ int main(int argc, char *argv[])
 
 	*/
 	//std::vector <Account> accounts;
-	std::vector <std::string> parameters;
-	std::string userCommand;
+	// std::vector <std::string> parameters;
+	// std::string userCommand;
 
-	std::cout << "~~~ Welcome to LincBank! ~~~ \n";
-	//Account account;
-	while (userCommand != "exit")
-	{
-		parameters.clear();
-		std::cout << "\n >>";
-		std::getline(std::cin, userCommand);
-		char* cstr = new char[userCommand.length()+1];
-		strcpy(cstr, userCommand.c_str());
-		char* token;
-		token = strtok(cstr, " ");
+	// std::cout << "~~~ Welcome to LincBank! ~~~ \n";
+	// //Account account;
+	// while (userCommand != "exit")
+	// {
+	// 	parameters.clear();
+	// 	std::cout << "\n >>";
+	// 	std::getline(std::cin, userCommand);
+	// 	char* cstr = new char[userCommand.length()+1];
+	// 	strcpy(cstr, userCommand.c_str());
+	// 	char* token;
+	// 	token = strtok(cstr, " ");
 
-	}
+	// }
+	Current current;
+	current.withdraw(400);
+
 	return 0;
 
 }
