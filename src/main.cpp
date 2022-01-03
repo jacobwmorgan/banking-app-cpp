@@ -7,7 +7,7 @@
 #include "Account.h"
 #include "Current.h"
 //#include "Saving.h"
-
+//g++ -I../include main.cpp Account.cpp Current.cpp Transaction.cpp InterestEarning.cpp
 int main(int argc, char *argv[])
 {
 	/*
@@ -39,10 +39,17 @@ int main(int argc, char *argv[])
 
 	std::cout << "~~~ Welcome to LincBank! ~~~ \n";
 	//Account account;
-	Current current;
-	current.deposit(140);
-	//current.display();
-	current.displayHistory();
+	while (userCommand != "exit")
+	{
+		parameters.clear();
+		std::cout << "\n >>";
+		std::getline(std::cin, userCommand);
+		char* cstr = new char[userCommand.length()+1];
+		strcpy(cstr, userCommand.c_str());
+		char* token;
+		token = strtok(cstr, " ");
+
+	}
 	return 0;
 
 }

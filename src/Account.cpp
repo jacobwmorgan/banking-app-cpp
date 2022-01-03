@@ -9,7 +9,7 @@
 
 
 
-void Account::deposit(double amount)
+void Account::deposit(float amount)
 {
   Transaction transaction("Deposit",amount);
   addHistory(transaction);
@@ -17,13 +17,12 @@ void Account::deposit(double amount)
   std::cout << toString(amount) <<" added to your balance\nYour new balance is : "<< toString(getBalance())<<"\n";
 }
 
-double Account::withdraw(double amount)
+void Account::withdraw(float amount)
 {
   balance -= amount;
-  return amount;
 }
 
-std::string Account::toString(double input)
+std::string Account::toString(float input)
 {
   return std::to_string(input);
 }
@@ -75,12 +74,12 @@ std::string Account::getType()
   }
 }
 
-void Account::setBalance(double input)
+void Account::setBalance(float input)
 {
   balance = input;
 }
 
-double Account::getBalance()
+float Account::getBalance()
 {
   return balance;
 }

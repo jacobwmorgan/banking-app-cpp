@@ -7,7 +7,7 @@
 #include <time.h> 
 #include "Transaction.h"
 
-std::string Transaction::toString(double input)
+std::string Transaction::toString(float input)
 { 
   return std::to_string(input);
 }
@@ -33,30 +33,26 @@ void Transaction::setTimeStamp()
   //std::time_t now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
   time_t now = time(0);
   timestamp = now;
-  std::cout<<"Time Stamp set\n";
 }
 
-double Transaction::getValue()
+float Transaction::getValue()
 {
   return value;
 }
 
-void Transaction::setValue(double input)
+void Transaction::setValue(float input)
 {
   value = input;
 }
 
 void Transaction::displayTransaction()
 {
-  std::cout << "omg kill me | " << getDesc() << " | " << toString(getValue()) <<"\n";
-  //std::cout << getTimeStamp() << "\n";
-  std::cout << "ffs\n";
+  std::cout << getTimeStamp() << " | " << getDesc() << " | " << toString(getValue()) <<"\n";
 }
 
-Transaction::Transaction(std::string inputDesc , double inputValue)
+Transaction::Transaction(std::string inputDesc , float inputValue)
 {
   setDesc(inputDesc);
   setTimeStamp();
   setValue(inputValue);
-  std::cout << "Transation logged\n";
 }

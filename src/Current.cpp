@@ -31,13 +31,16 @@ void Current::deposit(float amount)
   Transaction transaction("Current Account Deposit",amount);
   addHistory(transaction);
   std::cout << std::fixed << std::setprecision(2);
-  std::cout<< amount << " deposited\n";
+  std::cout << amount <<" added to your balance\nYour new balance is : "<< getBalance()<<"\n";
 
 }
 
-float Current::withdraw(float amount)
+void Current::withdraw(float amount)
 {
-  std::cout<<"WIP\n";
-  return 0;
+  float tempAmount = getBalance() - amount;
+  if (tempAmount < 0)
+  {
+    std::cout << tempAmount;
+  }
 }
 
