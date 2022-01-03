@@ -5,6 +5,7 @@
 #include <sstream>
 #include <vector>
 #include <string.h>
+#include "Transaction.h"
 
 /*
 Header file for Account class
@@ -13,23 +14,36 @@ Header file for Account class
 class Account
 {
   public :
-    Account();
-    virtual ~Account();
-    std::string toString(std::string input);
-    virtual void deposit(int amount);
-    int withdraw (int amount);
+    std::string toString(float input);
+    virtual void deposit(float amount);
+    virtual void withdraw (float amount);
+    
+    void display();
+    
     void setName(std::string input);
-    void genAccountNumber(std::vector<Account> accounts);
     std::string getName();
+    
+    void setNumber();
     int getNumber();
 
-   
+    void setType(char input);
+    std::string getType();
+
+    void setBalance(float input);
+    float getBalance();
+
+    void addHistory(Transaction input);
+    void displayHistory();
+    
+    Account();
+
   private :
     std::string name;
-    std::string accountNumber;
+    int number;
+    char type;
   protected :
     int balance;
-    std::vector <std::string> history;
+    std::vector <Transaction> history;
 };
 
 #endif

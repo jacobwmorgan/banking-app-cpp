@@ -11,7 +11,7 @@
 class Current : public Account
 {
   public:
-    int overdraft;
+    float overdraft;
     Current();
 };
 

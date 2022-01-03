@@ -9,12 +9,12 @@
 
 
 
-void Account::deposit(float amount)
+void Account::deposit(float amount)\
 {
   Transaction transaction("Deposit",amount);
   addHistory(transaction);
   setBalance(getBalance() + amount);
-  std::cout << toString(amount) <<" added to your balance\nYour new balance is : "<< toString(getBalance())<<"\n";
+  std::cout << toString(amount) <<" added to your balance\nYour new balance is : "<< getBalance()<<"\n";
 }
 
 void Account::withdraw(float amount)
