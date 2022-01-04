@@ -7,6 +7,8 @@
 #include <string.h>
 
 
+//p = Amount , r = rate of interest , t = time period 
+
 class Interest_Earning
 {
   public:

@@ -15,6 +15,7 @@ class Current : public Account
     Current();
     void deposit(float amount);
     void withdraw(float amount);
+    void display();
 };
 
 #endif

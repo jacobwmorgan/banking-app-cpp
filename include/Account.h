@@ -18,7 +18,7 @@ class Account
     virtual void deposit(float amount) =0;
     virtual void withdraw (float amount)=0;
     
-    void display();
+    virtual void display() = 0;
     
     void setName(std::string input);
     std::string getName();
