@@ -8,14 +8,16 @@
 #include <string.h>
 
 #include "Account.h"
-#include "Interest_Earning.h"
+#include "InterestEarning.h"
 
-class Saving : public Account , public Interest_Earning
+class Saving : public Account , public InterestEarning
 {
   public:
     Saving();
+    float getInterestRate();
+    void setInterestRate();
   private:
-    int interestRate;
+    float interestRate;
     bool isa;
 };
 
