@@ -51,8 +51,7 @@ int main(int argc, char *argv[])
 	// 	token = strtok(cstr, " ");
 
 	// }
-	Current current;
-	current.withdraw(400);
+	Saving saving;
 
 	return 0;
 

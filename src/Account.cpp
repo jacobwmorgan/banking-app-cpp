@@ -27,12 +27,6 @@ std::string Account::toString(float input)
   return std::to_string(input);
 }
 
-void Account::display()
-{
-  std::cout << std::fixed << std::setprecision(2);
-  std::cout << "-----------\nAccount Details\nName: "<< getName() <<"\nAccount Number: "<< getNumber() <<"\nAccount Type: "<<getType()<<"\n=========\nBalance: "<< getBalance() << "\n";
-}
-
 void Account::setName(std::string input)
 {
   name = input;
