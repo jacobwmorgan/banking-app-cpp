@@ -11,5 +11,6 @@
 float Interest_Earning::computeInterest(float p , float r, int t)
 {
   t *= 12;
+  std::cout << t << "\n";
   return p*pow((1+r/100),t);
 }

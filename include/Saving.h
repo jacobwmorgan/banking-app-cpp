@@ -18,9 +18,11 @@ class Saving : public Account , public Interest_Earning
     void setInterestRate();
     bool getIsa();
     void setIsa(char input);
+    std::string isaString();
 
     void deposit(float amount);
     void withdraw(float amount);
+    void displayInterest();
     void display();
   private:
     float interestRate;

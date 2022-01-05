@@ -31,7 +31,7 @@ void Current::deposit(float amount)
   Transaction transaction("Current Account Deposit",amount);
   addHistory(transaction);
   std::cout << std::fixed << std::setprecision(2);
-  std::cout << amount <<" added to your balance\nYour new balance is : "<< getBalance()<<"\n";
+  std::cout << amount <<" added to your current account balance\nYour new balance is : "<< getBalance()<<"\n";
 
 }
 

@@ -3,13 +3,14 @@
 #include <vector>
 #include <string.h>
 #include "Saving.h"
+#include "Transaction.h"
 
 
 Saving::Saving()
 {
   char userCommand;
   std::cout << "Do you want your account to be an isa? [Y/N]\n>>";
-  while (userCommand != 'y' || userCommand != 'n')
+  while (userCommand != 'y')
   {
     std::cin >> userCommand;
     userCommand = std::tolower(userCommand);
@@ -17,9 +18,14 @@ Saving::Saving()
     {
       std::cout << "\nInvalid input\n";
     }
+    else if(userCommand == 'n')
+    {
+      break;
+    }
   }
   setIsa(userCommand);
   setInterestRate();
+  setType('s');
 }
 
 float Saving::getInterestRate()
@@ -55,14 +61,45 @@ void Saving::setIsa(char input)
   }
 }
 
-//depo
+std::string Saving::isaString()
+{
+  if(getIsa() == true)
+  {
+    return "Yes";
+  }else
+  {
+    return "No";
+  }
+}
 
-//with
+void Saving::deposit(float amount)
+{
+  setBalance(getBalance() + amount);
+  Transaction transaction("Savings Account Deposit",amount);
+  addHistory(transaction);
+  std::cout << std::fixed << std::setprecision(2);
+  std::cout << amount <<" added to your saving account balance\nYour new balance is : "<< getBalance()<<"\n";
+}
 
-//display
+void Saving::withdraw(float amount)
+{
+  if((getBalance() - amount) < 0)
+  {
+    std::cout << "Not enough money in account\nTransaction Canceled\n";
+  }else
+  {
+    setBalance(getBalance() - amount);
+    std::cout << amount << " withdrawed from saving account balance\nYour new balance is : "<<getBalance()<<"\n";
+  }
+}
+
+void Saving::displayInterest()
+{
+  std::cout << computeInterest(getBalance(),getInterestRate(),1) << "\n";
+}
 
 void Saving::display()
 {
   std::cout << std::fixed << std::setprecision(2);
-  std::cout << "-----------\nAccount Details\nName: "<< getName() <<"\nAccount Number: "<< getNumber() <<"\nAccount Type: "<<getType()<<"\n=========\nBalance: "<< getBalance() << "\nISA: "<<std::noboolalpha << getIsa()<<"\n";
+  std::cout << "-----------\nAccount Details\nName: "<< getName() <<"\nAccount Number: "<< getNumber() <<"\nAccount Type: "<<getType()<<"\n=========\nBalance: "<< getBalance() << "\nISA: "<<isaString()<<"\n";
 }

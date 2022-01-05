@@ -52,7 +52,9 @@ int main(int argc, char *argv[])
 
 	// }
 	Saving saving;
-
+	saving.deposit(100);
+	saving.display();
+	saving.displayInterest();
 	return 0;
 
 }
