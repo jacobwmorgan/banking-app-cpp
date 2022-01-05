@@ -9,6 +9,15 @@
 #include "Saving.h"
 //#include "Saving.h"
 //g++ -I../include main.cpp Account.cpp Current.cpp Transaction.cpp InterestEarning.cpp
+
+
+
+// TODO
+// 1.) COMMENT CODE I HAVE RN
+// 2.) DO THE UI 
+// 3.) WRITE REPORT
+
+
 int main(int argc, char *argv[])
 {
 	/*
@@ -34,7 +43,7 @@ int main(int argc, char *argv[])
 		LogOut []
 
 	*/
-	//std::vector <Account> accounts;
+	std::vector <Account*> accounts;
 	// std::vector <std::string> parameters;
 	// std::string userCommand;
 
@@ -51,10 +60,13 @@ int main(int argc, char *argv[])
 	// 	token = strtok(cstr, " ");
 
 	// }
-	Saving saving;
-	saving.deposit(100);
-	saving.display();
-	saving.displayInterest();
+	Saving* saving = new Saving();
+	int size = accounts.size();
+	saving -> setNumber(size+1);
+	accounts.push_back(saving);
+	saving -> deposit(100);
+	saving -> display();
+	saving -> displayInterest();
 	return 0;
 
 }

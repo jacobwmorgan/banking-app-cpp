@@ -12,7 +12,7 @@
 class Interest_Earning
 {
   public:
-    float computeInterest(float p , float r , int t);
+    float computeInterest(float p , float r , float t);
 };
 
 

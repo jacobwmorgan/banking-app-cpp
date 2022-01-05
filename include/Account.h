@@ -23,7 +23,7 @@ class Account
     void setName(std::string input);
     std::string getName();
     
-    void setNumber();
+    void setNumber(int inputNumber);
     int getNumber();
 
     void setType(char input);

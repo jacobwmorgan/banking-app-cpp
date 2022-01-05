@@ -38,9 +38,10 @@ std::string Account::getName()
 }
 
 //WIP
-void Account::setNumber()
+void Account::setNumber(int inputNumber)
 {
-  number = 2;
+  number = inputNumber;
+  //std::cout << std::to_string(length)<< "\n";
 }
 
 int Account::getNumber()
@@ -108,6 +109,5 @@ Account::Account()
   std::cout<<"Name: ";
   std::cin >> tempName;
   setName(tempName);
-  setNumber();
   //std::cout<<"Account created\n";
 }

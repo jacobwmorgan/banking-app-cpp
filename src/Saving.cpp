@@ -95,12 +95,17 @@ void Saving::withdraw(float amount)
 
 void Saving::displayInterest()
 {
-  float time;
-  // while(time != NULL)
-  // {
-    
-  // }
-  std::cout << computeInterest(getBalance(),getInterestRate(),3.5) << "\n";
+  float time = 0;
+  while(time == 0)
+  {
+    std::cout << "Please input how many years you want to calculate \n>>";
+    std::cin >> time;
+    if(time == 0)
+    {
+      std::cout << "Input can not be nothing\n";
+    }
+  }
+  std::cout << computeInterest(getBalance(),getInterestRate(),time) << "\n";
 }
 
 void Saving::display()
