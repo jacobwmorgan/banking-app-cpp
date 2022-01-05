@@ -95,7 +95,12 @@ void Saving::withdraw(float amount)
 
 void Saving::displayInterest()
 {
-  std::cout << computeInterest(getBalance(),getInterestRate(),1) << "\n";
+  float time;
+  // while(time != NULL)
+  // {
+    
+  // }
+  std::cout << computeInterest(getBalance(),getInterestRate(),3.5) << "\n";
 }
 
 void Saving::display()
