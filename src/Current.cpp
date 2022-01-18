@@ -5,10 +5,14 @@
 #include <cctype>
 #include "Current.h"
 
-Current::Current()
+Current::Current(float initialDepot)
 {
   std::cout<<"Current account created\n";
   overdraft = 500;
+  if (initialDepot > 0)
+  {
+    deposit(initialDepot);
+  }
   setType('c');
 }
 
