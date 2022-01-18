@@ -27,28 +27,6 @@ std::string Account::toString(float input)
   return std::to_string(input);
 }
 
-void Account::setName(std::string input)
-{
-  name = input;
-}
-
-std::string Account::getName()
-{
-  return name;
-}
-
-//WIP
-void Account::setNumber(int inputNumber)
-{
-  number = inputNumber;
-  //std::cout << std::to_string(length)<< "\n";
-}
-
-int Account::getNumber()
-{
-  return number;
-}
-
 void Account::setType(char input)
 {
   type = input;
@@ -63,6 +41,10 @@ std::string Account::getType()
   else if (type == 's')
   {
     return "Savings";
+  }
+  else if (type == 'i')
+  {
+    return "ISA Savings";
   }
   else
   {
@@ -99,15 +81,4 @@ void Account::displayHistory()
       history[i].displayTransaction();
     }
   }
-  
-}
-
-Account::Account()
-{
-  balance = 0;
-  std::string tempName;
-  std::cout<<"Name: ";
-  std::cin >> tempName;
-  setName(tempName);
-  //std::cout<<"Account created\n";
 }

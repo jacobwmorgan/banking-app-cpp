@@ -5,13 +5,13 @@
 #include <cctype>
 #include "Current.h"
 
-Current::Current(float initialDepot)
+Current::Current(float initialDeposit)
 {
   std::cout<<"Current account created\n";
   overdraft = 500;
-  if (initialDepot > 0)
+  if (initialDeposit > 0)
   {
-    deposit(initialDepot);
+    deposit(initialDeposit);
   }
   setType('c');
 }
@@ -81,5 +81,6 @@ void Current::withdraw(float amount)
 void Current::display()
 {
   std::cout << std::fixed << std::setprecision(2);
-  std::cout << "-----------\nAccount Details\nName: "<< getName() <<"\nAccount Number: "<< getNumber() <<"\nAccount Type: "<<getType()<<"\n=========\nBalance: "<< getBalance() << "\nOverdraft: "<< overdraft <<"\n";
+  //std::cout << "-----------\nAccount Details\nName: "<< getName() <<"\nAccount Number: "<< getNumber() <<"\nAccount Type: "<<getType()<<"\n=========\nBalance: "<< getBalance() << "\nOverdraft: "<< overdraft <<"\n";
+  std::cout  << "kys\n";
 }

@@ -11,21 +11,15 @@
 Header file for Account class
 */
 
-class Account
+class Account 
 {
   public :
     std::string toString(float input);
-    virtual void deposit(float amount) =0;
-    virtual void withdraw (float amount)=0;
+    virtual void deposit(float amount) = 0;
+    virtual void withdraw (float amount) = 0;
     
     virtual void display() = 0;
     
-    void setName(std::string input);
-    std::string getName();
-    
-    void setNumber(int inputNumber);
-    int getNumber();
-
     void setType(char input);
     std::string getType();
 
@@ -35,11 +29,7 @@ class Account
     void addHistory(Transaction input);
     void displayHistory();
     
-    Account();
-
   private :
-    std::string name;
-    int number;
     char type;
   protected :
     int balance;

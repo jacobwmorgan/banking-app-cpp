@@ -6,26 +6,18 @@
 #include "Transaction.h"
 
 
-Saving::Saving()
+Saving::Saving(float initialDeposit, bool isaInput)
 {
-  char userCommand;
-  std::cout << "Do you want your account to be an isa? [Y/N]\n>>";
-  while (userCommand != 'y')
-  {
-    std::cin >> userCommand;
-    userCommand = std::tolower(userCommand);
-    if (userCommand != 'n' && userCommand != 'y')
-    {
-      std::cout << "\nInvalid input\n";
-    }
-    else if(userCommand == 'n')
-    {
-      break;
-    }
-  }
-  setIsa(userCommand);
+  setIsa(isaInput);
   setInterestRate();
-  setType('s');
+  if(isaInput == false)
+  {
+    setType('s');
+  }
+  else
+  {
+    setType('i');
+  }
 }
 
 float Saving::getInterestRate()
@@ -49,16 +41,9 @@ bool Saving::getIsa()
   return isa;
 }
 
-void Saving::setIsa(char input)
+void Saving::setIsa(bool input)
 {
-  if(input == 'y')
-  {
-    isa = true;
-  }
-  else
-  {
-    isa = false;
-  }
+  isa = input;
 }
 
 std::string Saving::isaString()
@@ -89,7 +74,7 @@ void Saving::withdraw(float amount)
   }else
   {
     setBalance(getBalance() - amount);
-    std::cout << amount << " withdrawed from saving account balance\nYour new balance is : "<<getBalance()<<"\n";
+    std::cout << amount << " withdrew from saving account balance\nYour new balance is : "<<getBalance()<<"\n";
   }
 }
 
@@ -111,5 +96,6 @@ void Saving::displayInterest()
 void Saving::display()
 {
   std::cout << std::fixed << std::setprecision(2);
-  std::cout << "-----------\nAccount Details\nName: "<< getName() <<"\nAccount Number: "<< getNumber() <<"\nAccount Type: "<<getType()<<"\n=========\nBalance: "<< getBalance() << "\nISA: "<<isaString()<<"\n";
+  //std::cout << "-----------\nAccount Details\nName: "<< getName() <<"\nAccount Number: "<< getNumber() <<"\nAccount Type: "<<getType()<<"\n=========\nBalance: "<< getBalance() << "\nISA: "<<isaString()<<"\n";
+  std::cout << " ur mum\n";
 }

@@ -12,7 +12,7 @@ class Current : public Account
 {
   public:
     float overdraft;
-    Current();
+    Current(float initialDeposit);
     void deposit(float amount);
     void withdraw(float amount);
     void display();

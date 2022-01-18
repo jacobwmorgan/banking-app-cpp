@@ -22,7 +22,7 @@ void InvalidInput();
 
 int main(int argc, char *argv[])
 {
-	std::vector <Account> accounts;
+	std::vector <Account*> accounts;
 	std::vector <std::string> parameters;
 	std::string userCommand;
 	std::cout << "~~~ Welcome to LincBank! ~~~\n";
@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
 		}
 		else if (command.compare("open") == 0)
 		{	
-			if(parameters.size() > 3)
+			if(parameters.size() > 3 || parameters.size() < 2)
 			{
 				InvalidInput();
 			}
@@ -70,32 +70,49 @@ int main(int argc, char *argv[])
 			{
 				if(parameters[1].compare("1") == 0)
 				{
-					int currentAmount;
+					int currentAmount = 0;
 					for (int i = 0; i < accounts.size(); i++)
 					{
 						if (accounts[i]-> getType() == "Current")
 						{
-							currentAmount+=1;
+							currentAmount++;
 						}
 					}
-					if(currentAmount > 1)
+					if(currentAmount > 0)
 					{
 						std::cout << "!You already have a current account!\n";
 					}
 					else
 					{
-						if(parameters.size > 2)
+						float depotMoney = 0;
+						if(parameters.size() > 2)
 						{
-							Current current = new Current(parameters[2]);
-							accounts.push_back(current);
+							depotMoney = std::stof(parameters[2]);
 						}
-						else
+						Account* current = new Current(depotMoney);
+						accounts.push_back(current);
+					}
+				}
+				else if(parameters[1].compare("2") == 0)
+				{
+					float depotMoney = 0;
+					if (parameters.size() > 2)
+					{
+						depotMoney = std::stof(parameters[2]);
+					}
+					Account* current = new Saving(depotMoney,false);
+					accounts.push_back(current);
+				}
+				else if(parameters[1].compare("3") == 0)
+				{
+					int isaAmount = 0;
+					for (int i = 0; i < accounts.size(); i++)
+					{
+						if(accounts[i]->getType() == "ISA Savings" )
 						{
-							Current current = new Current(0);
-							accounts.push_back(current);
+							isaAmount ++;
 						}
 					}
-					
 					
 				}
 			}
@@ -105,6 +122,11 @@ int main(int argc, char *argv[])
 		{
 			//display an account according to an index (starting from 1)
 			// alternatively , display all accounts if no index is provided
+			for (int i = 0; i < accounts.size(); i++)
+			{
+				std::cout << i << " : " << accounts[i]->getType() << "Account\n";
+			}
+			
 		}
 		else if (command.compare("withdraw") == 0)
 		{

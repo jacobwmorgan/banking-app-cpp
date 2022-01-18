@@ -13,11 +13,11 @@
 class Saving : public Account , public Interest_Earning
 {
   public:
-    Saving();
+    Saving(float initialDeposit,bool isaInput);
     float getInterestRate();
     void setInterestRate();
     bool getIsa();
-    void setIsa(char input);
+    void setIsa(bool input);
     std::string isaString();
 
     void deposit(float amount);
