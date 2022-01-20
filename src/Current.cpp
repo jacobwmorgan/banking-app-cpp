@@ -78,9 +78,14 @@ void Current::withdraw(float amount)
   std::cout << "Balance : "<< getBalance() << "\nOverdraft : "<< overdraft << "\n"; 
 }
 
+void Current::displayInterest(float time)
+{
+  std::cout <<"\n";
+}
+
 void Current::display()
 {
   std::cout << std::fixed << std::setprecision(2);
   //std::cout << "-----------\nAccount Details\nName: "<< getName() <<"\nAccount Number: "<< getNumber() <<"\nAccount Type: "<<getType()<<"\n=========\nBalance: "<< getBalance() << "\nOverdraft: "<< overdraft <<"\n";
-  std::cout  << "kys\n";
+  std::cout  << "Account Type : "<< getType() << "\n" << "Balance : "<< getBalance() << "\n" <<"Overdraft : " << overdraft << "\n\n";
 }

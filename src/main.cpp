@@ -18,11 +18,14 @@
 // 3.) WRITE REPORT
 
 void InvalidInput();
+bool isNumber(const std::string& str);
 
 
 int main(int argc, char *argv[])
 {
 	std::vector <Account*> accounts;
+	Account* currentlySelected = NULL;
+	int currentlySelectedIndex = 0;
 	std::vector <std::string> parameters;
 	std::string userCommand;
 	std::cout << "~~~ Welcome to LincBank! ~~~\n";
@@ -32,6 +35,11 @@ int main(int argc, char *argv[])
 		parameters.clear();
 		while(true)
 		{
+			if(currentlySelected != NULL)
+			{
+				std::cout << std::fixed << std::setprecision(2);
+				std::cout <<"\nSelected Account: " << currentlySelected->getType() << " | Index : " << std::to_string(currentlySelectedIndex+1) << " | Balance : " << currentlySelected->getBalance();
+			}
 			std::cout << "\n>>> ";
 			std::getline(std::cin,userCommand);
 			if (userCommand == "")
@@ -87,10 +95,24 @@ int main(int argc, char *argv[])
 						float depotMoney = 0;
 						if(parameters.size() > 2)
 						{
-							depotMoney = std::stof(parameters[2]);
+							if(isNumber(parameters[2]) == false) InvalidInput();
+							else
+							{
+								depotMoney = std::stof(parameters[2]);
+								Account* current = new Current(depotMoney);
+								accounts.push_back(current);
+								currentlySelected = accounts[accounts.size()-1];
+								currentlySelectedIndex = accounts.size()-1;
+							}
 						}
-						Account* current = new Current(depotMoney);
-						accounts.push_back(current);
+						else
+						{
+							Account* current = new Current(depotMoney);
+							accounts.push_back(current);
+							currentlySelected = accounts[accounts.size()-1];
+							currentlySelectedIndex = accounts.size()-1;
+						}
+						
 					}
 				}
 				else if(parameters[1].compare("2") == 0)
@@ -102,6 +124,8 @@ int main(int argc, char *argv[])
 					}
 					Account* current = new Saving(depotMoney,false);
 					accounts.push_back(current);
+					currentlySelected = accounts[accounts.size()-1];
+					currentlySelectedIndex = accounts.size()-1;
 				}
 				else if(parameters[1].compare("3") == 0)
 				{
@@ -113,7 +137,30 @@ int main(int argc, char *argv[])
 							isaAmount ++;
 						}
 					}
+					if(isaAmount > 1)
+					{
+						std::cout<< "You already have an ISA Account!\n";
+					}
+					else
+					{
+						if(parameters.size() < 3) std::cout << "Please provide how much money you want to put into your ISA\n ~Type options or ? to view the commands~\n  ";
+						else
+						{
+							if(std::stof(parameters[2]) < 500) std::cout << "Please deposit 500 or more to make an ISA Savings account\n";
+							else
+							{
+								Account* current = new Saving(std::stof(parameters[2]),true);
+								accounts.push_back(current);
+								currentlySelected = accounts[accounts.size()-1];
+								currentlySelectedIndex = accounts.size()-1;
+							}
+						}
+					}
 					
+				}
+				else
+				{
+					InvalidInput();
 				}
 			}
 			
@@ -122,19 +169,70 @@ int main(int argc, char *argv[])
 		{
 			//display an account according to an index (starting from 1)
 			// alternatively , display all accounts if no index is provided
-			for (int i = 0; i < accounts.size(); i++)
+			if (parameters.size() > 2) InvalidInput();
+			else if(parameters.size() < 2)
 			{
-				std::cout << i << " : " << accounts[i]->getType() << "Account\n";
+				if(accounts.size() != 0)
+				{
+					for (int i = 0; i < accounts.size(); i++)
+					{
+						std::cout << i+1 << " : " << accounts[i]->getType() << " Account\n";
+					}
+				}
+				else
+				{
+					std::cout << "You have no accounts\nLearn how to make some by typing options\n";
+				}
+			}
+			else
+			{
+				if(isNumber(parameters[1]) == false) InvalidInput();
+				else
+				{
+					int accountsSize = accounts.size() -1;
+					if(accountsSize < stoi(parameters[1])-1) InvalidInput();
+					else
+					{
+						accounts[stoi(parameters[1])-1] -> display();
+						accounts[stoi(parameters[1])-1]->displayHistory();
+						currentlySelected = accounts[stoi(parameters[1])-1];
+						currentlySelectedIndex = stoi(parameters[1])-1;
+					}
+				}
 			}
 			
 		}
 		else if (command.compare("withdraw") == 0)
 		{
-			//allow user to withdraw funds from an account
+			if(parameters.size() != 2) InvalidInput();
+			else
+			{
+				if(currentlySelected == NULL) std::cout << "There is no account selected\nView an account to select that account\n";
+				else
+				{
+					if(isNumber(parameters[1]) == false) InvalidInput();
+					else
+					{
+						currentlySelected->withdraw(std::stof(parameters[1]));
+					}
+				}
+			}
 		}
 		else if (command.compare("deposit") == 0)
 		{
-			// allow user to deposit funds into an account
+			if(parameters.size() != 2) InvalidInput();
+			else
+			{
+				if(currentlySelected == NULL) std::cout << "There is no account selected\nView an account to select that account\n";
+				else
+				{
+					if(isNumber(parameters[1]) == false) InvalidInput();
+					else
+					{
+						currentlySelected->deposit(std::stof(parameters[1]));
+					}
+				}
+			}
 		}
 		else if (command.compare("transfer") == 0)
 		{
@@ -143,7 +241,19 @@ int main(int argc, char *argv[])
 		}
 		else if (command.compare("project") == 0)
 		{
-			// compute compound interest t years into the future
+			if(parameters.size() != 2) InvalidInput();
+			else
+			{
+				if (currentlySelected->getType() == "Savings" || currentlySelected->getType() == "ISA Savings")
+				{
+					if(isNumber(parameters[1]) == false) InvalidInput();
+					else
+					{
+						currentlySelected -> displayInterest(std::stof(parameters[1]));
+					}
+				}
+				else InvalidInput();
+			}
 		}
 		
 		//else if (command.compare("search"))
@@ -176,3 +286,13 @@ void InvalidInput()
 {
 	std::cout << "Invalid Input\n~Type options or ? to view the commands~\n";
 }
+
+bool isNumber(const std::string& str)
+{
+	for (char const &c : str)
+	{
+		if(std::isdigit(c)==0)return false;
+	}
+	return true;
+}
+

@@ -16,6 +16,7 @@ class Current : public Account
     void deposit(float amount);
     void withdraw(float amount);
     void display();
+    void displayInterest(float time);
 };
 
 #endif

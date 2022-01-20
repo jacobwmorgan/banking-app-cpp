@@ -22,7 +22,7 @@ class Saving : public Account , public Interest_Earning
 
     void deposit(float amount);
     void withdraw(float amount);
-    void displayInterest();
+    void displayInterest(float time);
     void display();
   private:
     float interestRate;

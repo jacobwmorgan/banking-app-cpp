@@ -13,11 +13,15 @@ Saving::Saving(float initialDeposit, bool isaInput)
   if(isaInput == false)
   {
     setType('s');
+    std::cout << "Savings Account made\n";
   }
   else
   {
     setType('i');
+    std::cout << "ISA Savings Account made\n";
   }
+  
+  if(initialDeposit > 0) deposit(initialDeposit);
 }
 
 float Saving::getInterestRate()
@@ -78,18 +82,8 @@ void Saving::withdraw(float amount)
   }
 }
 
-void Saving::displayInterest()
+void Saving::displayInterest(float time)
 {
-  float time = 0;
-  while(time == 0)
-  {
-    std::cout << "Please input how many years you want to calculate \n>>";
-    std::cin >> time;
-    if(time == 0)
-    {
-      std::cout << "Input can not be nothing\n";
-    }
-  }
   std::cout << computeInterest(getBalance(),getInterestRate(),time) << "\n";
 }
 
@@ -97,5 +91,5 @@ void Saving::display()
 {
   std::cout << std::fixed << std::setprecision(2);
   //std::cout << "-----------\nAccount Details\nName: "<< getName() <<"\nAccount Number: "<< getNumber() <<"\nAccount Type: "<<getType()<<"\n=========\nBalance: "<< getBalance() << "\nISA: "<<isaString()<<"\n";
-  std::cout << " ur mum\n";
+  std::cout << "-----------\nAccount Details\nAccount Type : "<< getType() << "\nBalance : " << getBalance() << "\nInterest Rate : " << getInterestRate() << "\n";
 }

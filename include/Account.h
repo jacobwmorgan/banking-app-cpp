@@ -19,6 +19,7 @@ class Account
     virtual void withdraw (float amount) = 0;
     
     virtual void display() = 0;
+    virtual void displayInterest(float time) = 0 ;
     
     void setType(char input);
     std::string getType();
