@@ -13,14 +13,19 @@ Current::Current(float initialDeposit)
   {
     deposit(initialDeposit);
   }
-  setType('c');
 }
+
+std::string Current::toString(float input)
+{
+  return std::to_string(input);
+}
+
 
 void Current::deposit(float amount)
 {
   if(overdraft == 500)
   {
-    setBalance(getBalance() + amount);
+    balance += amount;
   }
   else
   {
@@ -29,13 +34,13 @@ void Current::deposit(float amount)
     {
       float tempOverdraft = overdraft - 500;
       overdraft = 500;
-      setBalance(getBalance() + tempOverdraft);
+      balance += tempOverdraft;
     }
   }
   Transaction transaction("Current Account Deposit",amount);
   addHistory(transaction);
   std::cout << std::fixed << std::setprecision(2);
-  std::cout << amount <<" added to your current account balance\nYour new balance is : "<< getBalance()<<"\n";
+  std::cout << amount <<" added to your current account balance\nYour new balance is : "<< balance<<"\n";
 
 }
 
@@ -43,7 +48,7 @@ void Current::deposit(float amount)
 //TO DO , LEGIT DO THE OVERDRAFT THING YOU SEE EVERY SINGLE DAY 
 void Current::withdraw(float amount)
 {
-  float tempAmount = getBalance() - amount;
+  float tempAmount = balance - amount;
   if (tempAmount < 0)
   {
     char userCommand;
@@ -73,9 +78,9 @@ void Current::withdraw(float amount)
       }
     }
   }else{
-    setBalance(getBalance() - amount);
+    balance -= amount;
   }
-  std::cout << "Balance : "<< getBalance() << "\nOverdraft : "<< overdraft << "\n"; 
+  std::cout << "Balance : "<< balance << "\nOverdraft : "<< overdraft << "\n"; 
 }
 
 void Current::displayInterest(float time)
@@ -86,6 +91,37 @@ void Current::displayInterest(float time)
 void Current::display()
 {
   std::cout << std::fixed << std::setprecision(2);
-  //std::cout << "-----------\nAccount Details\nName: "<< getName() <<"\nAccount Number: "<< getNumber() <<"\nAccount Type: "<<getType()<<"\n=========\nBalance: "<< getBalance() << "\nOverdraft: "<< overdraft <<"\n";
-  std::cout  << "Account Type : "<< getType() << "\n" << "Balance : "<< getBalance() << "\n" <<"Overdraft : " << overdraft << "\n\n";
+  //std::cout << "-----------\nAccount Details\nName: "<< getName() <<"\nAccount Number: "<< getNumber() <<"\nAccount Type: "<<getType()<<"\n=========\nBalance: "<< balance << "\nOverdraft: "<< overdraft <<"\n";
+  std::cout  << "-----------\nAccount Type : "<< getType() << "\n" << "Balance : "<< balance << "\n" <<"Overdraft : " << overdraft << "\n\n";
+}
+
+std::string Current::getType()
+{
+  return "Current";
+}
+
+float Current::getBalance()
+{
+  return balance;
+}
+
+void Current::addHistory(Transaction input)
+{
+  history.push_back(input);
+}
+
+void Current::displayHistory()
+{
+  if(history.size() == 0)
+  {
+    std::cout << "You have no history of transactions \n";
+  }else
+  {
+    std::cout << "-----------\nDate & Time | Description | Amount";
+    for (int i = 0; i < history.size(); i++)
+    {
+      /* code */
+      history[i].displayTransaction();
+    }
+  }
 }

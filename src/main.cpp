@@ -4,9 +4,11 @@
 #include <vector>
 #include <string.h>
 #include <iomanip> 
+#include <algorithm>
 #include "Account.h"
 #include "Current.h"
 #include "Saving.h"
+
 //#include "Saving.h"
 //g++ -I../include main.cpp Account.cpp Current.cpp Transaction.cpp InterestEarning.cpp
 
@@ -51,7 +53,14 @@ int main(int argc, char *argv[])
 					break;
 			}
 		}
-			
+		for (int i = 0; i < userCommand.length(); i++)
+		{
+			if(userCommand[i]>= 'A' && userCommand[i]<='Z')
+			{
+				userCommand[i] = userCommand[i]+32;
+			}
+		}
+		
 		char* cstr = new char[userCommand.length() + 1];
 		strcpy(cstr,userCommand.c_str());
 		char* token;
@@ -143,7 +152,7 @@ int main(int argc, char *argv[])
 					}
 					else
 					{
-						if(parameters.size() < 3) std::cout << "Please provide how much money you want to put into your ISA\n ~Type options or ? to view the commands~\n  ";
+						if(parameters.size() < 3) std::cout << "Please provide how much money you want to put into your ISA\n ~Type options to view the commands~\n  ";
 						else
 						{
 							if(std::stof(parameters[2]) < 500) std::cout << "Please deposit 500 or more to make an ISA Savings account\n";
@@ -189,14 +198,18 @@ int main(int argc, char *argv[])
 				if(isNumber(parameters[1]) == false) InvalidInput();
 				else
 				{
-					int accountsSize = accounts.size() -1;
-					if(accountsSize < stoi(parameters[1])-1) InvalidInput();
+					if(stoi(parameters[1]) == 0) InvalidInput();
 					else
 					{
-						accounts[stoi(parameters[1])-1] -> display();
-						accounts[stoi(parameters[1])-1]->displayHistory();
-						currentlySelected = accounts[stoi(parameters[1])-1];
-						currentlySelectedIndex = stoi(parameters[1])-1;
+						int accountsSize = accounts.size() -1;
+						if(accountsSize < stoi(parameters[1])-1) InvalidInput();
+						else
+						{
+							accounts[stoi(parameters[1])-1] -> display();
+							accounts[stoi(parameters[1])-1]->displayHistory();
+							currentlySelected = accounts[stoi(parameters[1])-1];
+							currentlySelectedIndex = stoi(parameters[1])-1;
+						}
 					}
 				}
 			}
@@ -236,8 +249,58 @@ int main(int argc, char *argv[])
 		}
 		else if (command.compare("transfer") == 0)
 		{
-			// allow user to transfer funds between accounts
-			// i.e., a withdrawal followed by a deposit!
+			if(parameters.size() != 4) InvalidInput();
+			else
+			{
+				bool PASSFLAG = true;
+				for (int i = 1; i < parameters.size(); i++)
+				{
+					if(isNumber(parameters[i]) == false)
+					{
+						InvalidInput();
+						PASSFLAG = false;
+						break;
+					}
+				}
+				if(PASSFLAG == true)
+				{
+					float amount = std::stof(parameters[3]);
+					if(stoi(parameters[1]) -1 > accounts.size() || stoi(parameters[2] ) -1 > accounts.size()) InvalidInput();
+					else
+					{
+						if(accounts[stoi(parameters[1]) -1]->getType() == "Current")
+						{
+							if(accounts[stoi(parameters[1]) -1]->getBalance() == 0)
+							{
+								float tempOverDraft = accounts[stoi(parameters[1]) -1] -> overdraft;
+								if(tempOverDraft == 0 || tempOverDraft - amount < 0)std::cout << "Not enough money in account\n";
+								else
+								{
+									accounts[stoi(parameters[1])-1]->withdraw(amount);
+									accounts[stoi(parameters[2])-1]->deposit(amount);
+								}
+							}
+							else
+							{
+								accounts[stoi(parameters[1])-1]->withdraw(amount);
+								accounts[stoi(parameters[2])-1]->deposit(amount);
+							}
+
+						}
+						else
+						{
+							float tempBalance = accounts[stoi(parameters[1])-1] -> getBalance();
+							if(tempBalance - amount < 0) std::cout << "Not enough money in account";
+							else
+							{
+								accounts[stoi(parameters[1])-1]->withdraw(amount);
+								accounts[stoi(parameters[2])-1]->deposit(amount);
+							}
+						}
+					}
+				}
+				
+			}
 		}
 		else if (command.compare("project") == 0)
 		{
@@ -284,7 +347,7 @@ int main(int argc, char *argv[])
 
 void InvalidInput()
 {
-	std::cout << "Invalid Input\n~Type options or ? to view the commands~\n";
+	std::cout << "Invalid Input\n~Type options to view the commands~\n";
 }
 
 bool isNumber(const std::string& str)

@@ -47,7 +47,8 @@ void Transaction::setValue(float input)
 
 void Transaction::displayTransaction()
 {
-  std::cout << getTimeStamp() << " | " << getDesc() << " | " << toString(getValue()) <<"\n";
+  std::cout << std::fixed << std::setprecision(2);
+  std::cout << "\n-----------\n" << getTimeStamp() << " >> " << getDesc() << " | " << getValue() <<"\n";
 }
 
 Transaction::Transaction(std::string inputDesc , float inputValue)
