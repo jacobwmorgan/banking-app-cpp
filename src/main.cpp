@@ -249,6 +249,7 @@ int main(int argc, char *argv[])
 					if(isNumber(parameters[1]) == false) InvalidInput();
 					else
 					{
+						std::cout << "-----------\nCurrent Balance : "<< currentlySelected->getBalance() << "\nBalance in "<< parameters[1] << " years : ";
 						currentlySelected -> displayInterest(std::stof(parameters[1]));
 					}
 				}
