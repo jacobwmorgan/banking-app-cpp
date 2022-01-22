@@ -14,6 +14,7 @@ class Saving : public Account , public Interest_Earning
 {
   public:
     Saving(float initialDeposit,bool isaInput);
+    std::string toString(float input);
     float getInterestRate();
     void setInterestRate();
     bool getIsa();
@@ -22,8 +23,16 @@ class Saving : public Account , public Interest_Earning
 
     void deposit(float amount);
     void withdraw(float amount);
+  
+    std::string getType();
+    float getBalance();
+
+    void addHistory(Transaction input);
+    void displayHistory();
+
     void displayInterest(float time);
     void display();
+
   private:
     float interestRate;
     bool isa;

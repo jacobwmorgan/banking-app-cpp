@@ -14,26 +14,23 @@ Header file for Account class
 class Account 
 {
   public :
-    std::string toString(float input);
+    virtual std::string toString(float input) = 0;
     virtual void deposit(float amount) = 0;
     virtual void withdraw (float amount) = 0;
     
     virtual void display() = 0;
     virtual void displayInterest(float time) = 0 ;
-    
-    void setType(char input);
-    std::string getType();
 
-    void setBalance(float input);
-    float getBalance();
+    virtual std::string getType() = 0;
+    virtual float getBalance() = 0;
 
-    void addHistory(Transaction input);
-    void displayHistory();
-    
-  private :
-    char type;
+    virtual void addHistory(Transaction input) = 0;
+    virtual void displayHistory() = 0;
+
+    float overdraft;
+
   protected :
-    int balance;
+    float balance;
     std::vector <Transaction> history;
 };
 

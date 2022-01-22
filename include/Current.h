@@ -11,12 +11,16 @@
 class Current : public Account
 {
   public:
-    float overdraft;
     Current(float initialDeposit);
+    std::string toString(float input);
     void deposit(float amount);
     void withdraw(float amount);
     void display();
     void displayInterest(float time);
+    std::string getType();
+    float getBalance();
+    void addHistory(Transaction input);
+    void displayHistory();
 };
 
 #endif
