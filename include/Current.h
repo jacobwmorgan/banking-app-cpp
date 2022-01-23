@@ -8,11 +8,17 @@
 
 #include "Account.h"
 
+
+/*
+Current inherits from the account class
+There can only be one current account
+*/
+
 class Current : public Account
 {
   public:
     Current(float initialDeposit);
-    std::string toString(float i nput);
+    std::string toString(float input);
     void deposit(float amount);
     void withdraw(float amount);
     void display();

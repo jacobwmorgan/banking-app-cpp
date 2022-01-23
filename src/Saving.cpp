@@ -5,11 +5,11 @@
 #include "Saving.h"
 #include "Transaction.h"
 
-
+//Constructor for Savings Class
 Saving::Saving(float initialDeposit, bool isaInput)
 {
-  setIsa(isaInput);
-  setInterestRate();
+  setIsa(isaInput); //Sets isa to isaInput
+  setInterestRate(); //Checks the isa and sets interestrate
   if(isaInput == false)
   {
     std::cout << "Savings Account made\n";
@@ -18,7 +18,7 @@ Saving::Saving(float initialDeposit, bool isaInput)
   {
     std::cout << "ISA Savings Account made\n";
   }
-  
+  //Checks if there is an initial deposit , if so the amount will be deposited
   if(initialDeposit > 0) deposit(initialDeposit);
 }
 
@@ -57,6 +57,7 @@ std::string Saving::isaString()
 
 void Saving::deposit(float amount)
 {
+  //Adds the money into the account
   balance += amount;
   Transaction transaction("Savings Account Deposit",amount);
   addHistory(transaction);
@@ -66,10 +67,13 @@ void Saving::deposit(float amount)
 
 void Saving::withdraw(float amount)
 {
+  //Checks if they have enough money for the transaction
   if((balance - amount) < 0) std::cout << "Not enough money in account\nTransaction Canceled\n";
   else
   {
     balance -= amount;
+    Transaction transaction("Savings Account Withdraw",amount);
+    addHistory(transaction);
     std::cout << amount << " withdrew from saving account balance\nYour new balance is : "<<balance<<"\n";
   }
 }
@@ -92,6 +96,7 @@ void Saving::addHistory(Transaction input)
 
 void Saving::displayHistory()
 {
+  //Checks if the user has any history 
   if(history.size() == 0) std::cout << "You have no history of transactions \n";
   else
   {
@@ -106,6 +111,7 @@ void Saving::displayHistory()
 
 void Saving::displayInterest(float time)
 {
+  //Displays the interest
   std::cout << computeInterest(balance,getInterestRate(),time) << "\n";
 }
 

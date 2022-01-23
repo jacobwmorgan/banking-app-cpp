@@ -6,14 +6,15 @@
 #include <vector>
 #include <string.h>
 
-
-//p = Amount , r = rate of interest , t = time period 
+/*
+This is an interface used to work out the projection of the balance
+It implements the interest rate equation in the function Interest_Earning and returns it to the user
+*/
 
 class Interest_Earning
 {
   public:
     float computeInterest(float p , float r , float t);
 };
-
 
 #endif

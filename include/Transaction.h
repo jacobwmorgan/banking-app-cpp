@@ -10,6 +10,10 @@
 #include <chrono>
 #include <time.h> 
 
+/*
+Transaction is an object used for storing the users "transactions" in a vector in the other classes
+*/
+
 class Transaction
 {
   public:
@@ -25,7 +29,7 @@ class Transaction
     Transaction(std::string inputDesc, float inputValue);
   private:
     float value;
-    time_t timestamp;
+    time_t timestamp; //Time_t allows c++ to grab the accurate time of the machine
     std::string desc;
 
 };

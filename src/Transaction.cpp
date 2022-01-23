@@ -24,14 +24,14 @@ void Transaction::setDesc(std::string input)
 
 char* Transaction::getTimeStamp()
 {
-  char* dt = ctime(&timestamp);
+  char* dt = ctime(&timestamp); //Gets the time from the computer
   return dt;
 }
 
 void Transaction::setTimeStamp()
 {
   //std::time_t now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
-  time_t now = time(0);
+  time_t now = time(0); //Sets timestamp to something that we can use
   timestamp = now;
 }
 
@@ -51,6 +51,7 @@ void Transaction::displayTransaction()
   std::cout << "\n-----------\n" << getTimeStamp() << " >> " << getDesc() << " | " << getValue() <<"\n";
 }
 
+//Constructor for transaction
 Transaction::Transaction(std::string inputDesc , float inputValue)
 {
   setDesc(inputDesc);

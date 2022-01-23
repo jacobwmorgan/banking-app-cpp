@@ -10,6 +10,14 @@
 #include "Account.h"
 #include "Interest_Earning.h"
 
+
+/*
+  Saving is the same as current other than it can have two types
+  A standard saving account or an ISA
+  The only difference is the interest rate
+  This means the savings account has much more complexity than the current account
+*/
+
 class Saving : public Account , public Interest_Earning
 {
   public:
