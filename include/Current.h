@@ -12,7 +12,7 @@ class Current : public Account
 {
   public:
     Current(float initialDeposit);
-    std::string toString(float input);
+    std::string toString(float i nput);
     void deposit(float amount);
     void withdraw(float amount);
     void display();

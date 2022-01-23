@@ -297,13 +297,14 @@ int main(int argc, char *argv[])
 								if(tempOverDraft == 0 || tempOverDraft - amount < 0)std::cout << "Not enough money in account\n";
 								else
 								{
-									//With draws from first account and deposits into second
+									//Withdraws from first account and deposits into second
 									accounts[stoi(parameters[1])-1]->withdraw(amount);
 									accounts[stoi(parameters[2])-1]->deposit(amount);
 								}
 							}
 							else
 							{
+								//Withdraws from first account and deposits into second
 								accounts[stoi(parameters[1])-1]->withdraw(amount);
 								accounts[stoi(parameters[2])-1]->deposit(amount);
 							}
@@ -311,10 +312,12 @@ int main(int argc, char *argv[])
 						}
 						else
 						{
+							//Checks if there is enough money in the account
 							float tempBalance = accounts[stoi(parameters[1])-1] -> getBalance();
 							if(tempBalance - amount < 0) std::cout << "Not enough money in account";
 							else
 							{
+								//Withdraws from first account and deposits into second
 								accounts[stoi(parameters[1])-1]->withdraw(amount);
 								accounts[stoi(parameters[2])-1]->deposit(amount);
 							}
@@ -324,16 +327,17 @@ int main(int argc, char *argv[])
 				
 			}
 		}
-		else if (command.compare("project") == 0)
+		else if (command.compare("project") == 0) //Projecting into the future
 		{
-			if(parameters.size() != 2) InvalidInput();
+			if(parameters.size() != 2) InvalidInput(); //Checks if the user has inputted more than  one parameter
 			else
 			{
-				if (currentlySelected->getType() == "Savings" || currentlySelected->getType() == "ISA Savings")
+				if (currentlySelected->getType() == "Savings" || currentlySelected->getType() == "ISA Savings") //Checks if the account is the right type
 				{
-					if(isNumber(parameters[1]) == false) InvalidInput();
+					if(isNumber(parameters[1]) == false) InvalidInput(); //Checks if the user has inputted an amount and not a string
 					else
 					{
+						//Displays balance in the future and right now
 						std::cout << "-----------\nCurrent Balance : "<< currentlySelected->getBalance() << "\nBalance in "<< parameters[1] << " years : ";
 						currentlySelected -> displayInterest(std::stof(parameters[1]));
 					}
@@ -357,14 +361,6 @@ int main(int argc, char *argv[])
 	}
 	std::cout << "Press any key to quit...";
 	std::getchar();
-	// Saving* saving = new Saving();
-	// int size = accounts.size();
-	// saving -> setNumber(size+1);
-	// accounts.push_back(saving);
-	// saving -> deposit(100);
-	// saving -> display();
-	// saving -> displayInterest();
-	// return 0;
 
 }
 
