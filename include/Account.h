@@ -15,7 +15,7 @@ This allows for the other classes to inherit from it properly
 */
 
 class Account 
-{x
+{
   public :
     virtual std::string toString(float input) = 0; // We need this to turn floats into strings so we can output them
     virtual void deposit(float amount) = 0; 
@@ -32,7 +32,7 @@ class Account
 
     float overdraft;
 
-  protected :
+  protected : 
     float balance;
     std::vector <Transaction> history;
 };

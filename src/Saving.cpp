@@ -81,7 +81,7 @@ void Saving::withdraw(float amount)
 std::string Saving::getType()
 {
   if(getIsa() == true) return "ISA Savings";
-  else return "Saving";
+  else return "Savings";
 }
 
 float Saving::getBalance()

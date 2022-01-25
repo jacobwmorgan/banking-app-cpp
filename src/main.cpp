@@ -157,8 +157,8 @@ int main(int argc, char *argv[])
 						if(parameters.size() < 3) std::cout << "Please provide how much money you want to put into your ISA\n ~Type options to view the commands~\n  ";
 						else
 						{
-							//Checks to see if the user has provided enough money (500)
-							if(std::stof(parameters[2]) < 500) std::cout << "Please deposit 500 or more to make an ISA Savings account\n";
+							//Checks to see if the user has provided enough money (1000)
+							if(std::stof(parameters[2]) < 1000) std::cout << "Please deposit 1000 or more to make an ISA Savings account\n";
 							else
 							{
 								//creates new Savings ISA account
@@ -332,17 +332,22 @@ int main(int argc, char *argv[])
 			if(parameters.size() != 2) InvalidInput(); //Checks if the user has inputted more than  one parameter
 			else
 			{
-				if (currentlySelected->getType() == "Savings" || currentlySelected->getType() == "ISA Savings") //Checks if the account is the right type
+				if (currentlySelected == NULL) std::cout << "You dont have an account selected\n";
+				else
 				{
-					if(isNumber(parameters[1]) == false) InvalidInput(); //Checks if the user has inputted an amount and not a string
-					else
+					if (currentlySelected->getType() == "Savings" || currentlySelected->getType() == "ISA Savings") //Checks if the account is the right type
 					{
-						//Displays balance in the future and right now
-						std::cout << "-----------\nCurrent Balance : "<< currentlySelected->getBalance() << "\nBalance in "<< parameters[1] << " years : ";
-						currentlySelected -> displayInterest(std::stof(parameters[1]));
+						if(isNumber(parameters[1]) == false) InvalidInput(); //Checks if the user has inputted an amount and not a string
+						else
+						{
+							//Displays balance in the future and right now
+							std::cout << "-----------\nCurrent Balance : "<< currentlySelected->getBalance() << "\nBalance in "<< parameters[1] << " years : ";
+							currentlySelected -> displayInterest(std::stof(parameters[1]));
+						}
 					}
+					else std::cout << "Account selected is not a savings account\n";
+
 				}
-				else InvalidInput();
 			}
 		}
 		
